@@ -326,7 +326,7 @@ export class AppComponent implements OnInit {
 
 ### Properties for `SEL, MSL, ACS`
 
-```json
+```javascript
 {
     //...
     "optoins" : [
