@@ -211,7 +211,7 @@ export class AppComponent implements OnInit {
 
 ## Form level properties.
 
-```json
+```javascript
 {
   "code": "my-form-code",
   "label": "My Form Label",
@@ -285,7 +285,7 @@ export class AppComponent implements OnInit {
 
 ### Field Definition JSON properties;
 
-```json
+```javascript
 {
     "code": "FIELD1", // Unique for each field
     "type": "TXT", // Field type aliase
