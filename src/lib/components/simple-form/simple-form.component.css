@@ -1,0 +1,38 @@
+
+.fields-container {
+    display: flex !important;
+    flex-flow: wrap;
+}
+
+.hidden {
+  display: none !important;
+}
+
+
+.w-fit-content {
+  width: fit-content;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.justify-space-between {
+  justify-content: space-between;
+}
+
+.field-container {
+  padding: inherit;
+}

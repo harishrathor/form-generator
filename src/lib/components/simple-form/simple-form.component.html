@@ -1,0 +1,103 @@
+<div class="simple-form-container form-container m-5" [attr.id]="id + '__CONTAINER'">
+
+  <div class="card ">
+    <div class="card-header ">
+      <div class="display-flex justify-space-between">
+        <div class="form-label">
+          {{label}}
+        </div>
+        <div class="form-collapse">
+          <div class="form-collapse-icons cursor-pointer" (click)="isCollapsed = !isCollapsed" *ngIf="collapse">
+            <i class="material-icons" *ngIf="isCollapsed">
+              expand_more
+            </i>
+            <i class="material-icons" *ngIf="!isCollapsed">
+              expand_less
+            </i>
+          </div>
+        </div>
+
+      </div>
+      <div class="form-help">
+        <ul>
+          <li *ngFor="let help of helps;">
+            {{help}}
+          </li>
+        </ul>
+
+      </div>
+    </div>
+    <div class="card-body" style="padding-bottom:0% !important" [ngClass]="{'hidden': collapseBodyHidden}">
+      <div class="external-content top-external-content">
+        <ng-content select=".top-external-content"></ng-content>
+      </div>
+      <div class="simple-form-container form-container ml-3 mr-3 mt-3">
+        <form class="form-row simple-form" [attr.id]="id" [formGroup]="formGoup">
+          <div class="fields-container form-column-{{columns}}">
+            <ng-container class="field-wrapper" *ngFor="let fieldDef of fields">
+              <text *ngIf="fieldDef.type=='TXT'" [fieldDef]="fieldDef" [group]="formGoup" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="instance"></text>
+              <hidden *ngIf="fieldDef.type=='HID'" [fieldDef]="fieldDef" [group]="formGoup" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="instance"></hidden>
+              <blank *ngIf="fieldDef.type=='BLK'" [fieldDef]="fieldDef" [group]="formGoup" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="instance"></blank>
+              <anchor *ngIf="fieldDef.type=='ANC'" [fieldDef]="fieldDef" [group]="formGoup" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="instance"></anchor>
+              <radio *ngIf="fieldDef.type=='RAD'" [fieldDef]="fieldDef" [group]="formGoup" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="instance"></radio>
+              <checkbox *ngIf="fieldDef.type=='CHK'" [fieldDef]="fieldDef" [group]="formGoup" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="instance"></checkbox>
+              <text-area *ngIf="fieldDef.type=='TXA'" [fieldDef]="fieldDef" [group]="formGoup" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="instance"></text-area>
+              <c-select *ngIf="fieldDef.type=='SEL'" [fieldDef]="fieldDef" [group]="formGoup" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="instance"></c-select>
+              <multiselect *ngIf="fieldDef.type=='MSL'" [fieldDef]="fieldDef" [group]="formGoup" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="instance"></multiselect>
+              <autocomplete *ngIf="fieldDef.type=='ACS'" [fieldDef]="fieldDef" [group]="formGoup" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="instance"></autocomplete>
+              <c-button *ngIf="fieldDef.type=='BTN'" [fieldDef]="fieldDef" [group]="formGoup" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="instance"></c-button>
+              <c-fieldset *ngIf="fieldDef.type=='FST'" [fieldDef]="fieldDef" [group]="formGoup" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="instance"></c-fieldset>
+              <html-editor *ngIf="fieldDef.type=='HTML'" [fieldDef]="fieldDef" [group]="formGoup" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="instance"></html-editor>
+              <date *ngIf="fieldDef.type=='DAT'" [fieldDef]="fieldDef" [group]="formGoup" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="instance">
+              </date>
+              <month *ngIf="fieldDef.type=='MONTH'" [fieldDef]="fieldDef" [group]="formGoup" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="instance">
+              </month>
+              <date-time *ngIf="fieldDef.type=='DATETIME'" [fieldDef]="fieldDef" [group]="formGoup" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="instance">
+              </date-time>
+              <time *ngIf="fieldDef.type=='TIME'" [fieldDef]="fieldDef" [group]="formGoup" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="instance">
+              </time>
+              <number *ngIf="fieldDef.type=='NUM'" [fieldDef]="fieldDef" [group]="formGoup" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="instance">
+              </number>
+              <password *ngIf="fieldDef.type=='PWD'" [fieldDef]="fieldDef" [group]="formGoup" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="instance">
+              </password>
+            </ng-container>
+          </div>
+        </form>
+      </div>
+      <div class="external-content above-button-external-content">
+        <ng-content select=".above-button-external-content"></ng-content>
+      </div>
+      <div class="mt-3 mb-3 text-right display-flex justify-end">
+        <ng-container class="field-wrapper" *ngFor="let buttonDef of buttons">
+          <div class="pl-3 w-fit-content form-button-container" id="{{buttonDef.code}}__BTN">
+            <c-button [fieldDef]="buttonDef" [group]="formGoup" [formComponent]="formComponent" [pageComponent]="pageComponent"
+              [parent]="instance"></c-button>
+          </div>
+        </ng-container>
+      </div>
+      <div class="external-content bottom-external-content">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+
+</div>

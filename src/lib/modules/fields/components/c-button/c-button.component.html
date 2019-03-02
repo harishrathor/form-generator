@@ -1,0 +1,18 @@
+<div class="form-group row field-container" [ngClass]="cssClasses.fieldContainerClasses" [ngStyle]="cssStyle.fieldContainerStyle">
+  <label [attr.for]="id" class="col-form-label field-label" [ngClass]="cssClasses.labelClasses" [ngStyle]="cssStyle.labelStyle"></label>
+  <div class="input-container" [ngClass]="cssClasses.inputContainerClasses" [ngStyle]="cssStyle.inputContainerStyle">
+
+    <button type="button" class="btn btn-{{theme}}" [attr.id]="id">
+      <div class="button-label display-flex">
+        <i class="material-icons mr-1 " *ngIf="icon">
+          {{icon}}
+        </i>
+        {{label}}
+      </div>
+
+    </button>
+
+    <small class="form-text text-muted" id="{{id}}__HELP">{{helpText}}</small>
+    <!-- <errors [errors]="errors" *ngIf="errors.length > 0"></errors> -->
+  </div>
+</div>

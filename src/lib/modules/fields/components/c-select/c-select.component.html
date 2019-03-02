@@ -1,0 +1,25 @@
+<div class="form-group row field-container" [ngClass]="cssClasses.fieldContainerClasses" [ngStyle]="cssStyle.fieldContainerStyle"
+  [formGroup]="group">
+  <label [attr.for]="id" class="col-form-label field-label" [ngClass]="cssClasses.labelClasses" [ngStyle]="cssStyle.labelStyle">{{label}}</label>
+  <div class="input-container" [ngClass]="cssClasses.inputContainerClasses" [ngStyle]="cssStyle.inputContainerStyle">
+    <ng-select #ngSelect class="c-select" [ngClass]="{'select-is-invalid': errors.length > 0, 'select-is-valid': errors.length == 0}"
+      [ngClass]="cssClasses.fieldClasses" [items]="options" [selectOnTab]="true" bindValue="value" labelForId="{{id}}"
+      bindLabel="label" [clearOnBackspace]="true" placeholder="{{placeholder}}" [multiple]="multiple" [formControlName]="name"
+      (open)="callEventCallbacks('open')" (close)="callEventCallbacks('close')" (focus)="callEventCallbacks('focus', $event)"
+      (search)="callEventCallbacks('search', $event)" (blur)="callEventCallbacks('blur', $event)" (clear)="callEventCallbacks('clear')"
+      (add)="callEventCallbacks('add', $event)" (scrollToEnd)="callEventCallbacks('scrollToEnd', $event)" (remove)="callEventCallbacks('remove', $event)"
+(change)="callEventCallbacks('change', $event)" groupBy="options" [searchFn]="filterOptions">
+
+>
+
+      <ng-template ng-optgroup-tmp let-item="item">
+        {{item.label}}
+      </ng-template>
+      <ng-template ng-option-tmp let-item="item">
+        {{item.label}}
+      </ng-template>
+    </ng-select>
+    <small class="form-text text-muted" id="{{id}}__HELP">{{helpText}}</small>
+    <errors [errors]="errors" *ngIf="errors.length > 0"></errors>
+  </div>
+</div>

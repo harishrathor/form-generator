@@ -1,0 +1,70 @@
+<div class="simple-fieldset-container fieldset-container">
+
+  <div class="card ">
+<div class="card-header display-flex justify-space-between" [ngClass]="{'hidden': hideLabel}">
+      <div class="fieldset-label">
+        {{label}}
+      </div>
+      <div class="fieldset-collapse">
+        <div class="fieldset-collapse-icons cursor-pointer" (click)="isCollapsed = !isCollapsed" *ngIf="collapse">
+          <i class="material-icons" *ngIf="isCollapsed">
+            expand_more
+          </i>
+          <i class="material-icons" *ngIf="!isCollapsed">
+            expand_less
+          </i>
+        </div>
+      </div>
+    </div>
+    <div class="card-body" style="padding-bottom:0% !important" [ngClass]="{'hidden': collapseBodyHidden}">
+      <div class="fieldset-form-container fieldset-container ml-3 mr-3 mt-3">
+        <div class="simple-form" [attr.id]="code">
+          <div class="fields-container ">
+            <ng-container class="field-wrapper" *ngFor="let fldDef of fields">
+              <text *ngIf="fldDef.type=='TXT'" [fieldDef]="fldDef" [group]="group" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="parent"></text>
+              <hidden *ngIf="fldDef.type=='HID'" [fieldDef]="fldDef" [group]="group" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="parent"></hidden>
+              <blank *ngIf="fldDef.type=='BLK'" [fieldDef]="fldDef" [group]="group" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="parent"></blank>
+              <anchor *ngIf="fldDef.type=='ANC'" [fieldDef]="fldDef" [group]="group" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="parent"></anchor>
+              <radio *ngIf="fldDef.type=='RAD'" [fieldDef]="fldDef" [group]="group" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="parent"></radio>
+              <checkbox *ngIf="fldDef.type=='CHK'" [fieldDef]="fldDef" [group]="group" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="parent"></checkbox>
+              <text-area *ngIf="fldDef.type=='TXA'" [fieldDef]="fldDef" [group]="group" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="parent"></text-area>
+              <c-select *ngIf="fldDef.type=='SEL'" [fieldDef]="fldDef" [group]="group" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="parent"></c-select>
+              <multiselect *ngIf="fldDef.type=='MSL'" [fieldDef]="fldDef" [group]="group" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="parent"></multiselect>
+              <c-button *ngIf="fldDef.type=='BTN'" [fieldDef]="fldDef" [group]="group" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="parent"></c-button>
+              <html-editor *ngIf="fldDef.type=='HTML'" [fieldDef]="fldDef" [group]="group" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="parent"></html-editor>
+              <c-fieldset *ngIf="fldDef.type=='FST'" [fieldDef]="fldDef" [group]="group" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="parent"></c-fieldset>
+              <month *ngIf="fldDef.type=='MONTH'" [fieldDef]="fldDef" [group]="group" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="parent">
+              </month>
+              <date-time *ngIf="fldDef.type=='DATETIME'" [fieldDef]="fldDef" [group]="group" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="parent">
+              </date-time>
+              <time *ngIf="fldDef.type=='TIME'" [fieldDef]="fldDef" [group]="group" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="parent">
+              </time>
+              <number *ngIf="fldDef.type=='NUM'" [fieldDef]="fldDef" [group]="group" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="parent">
+              </number>
+              <password *ngIf="fldDef.type=='PWD'" [fieldDef]="fldDef" [group]="group" [formComponent]="formComponent"
+                [pageComponent]="pageComponent" [parent]="parent">
+              </password>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

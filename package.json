@@ -1,0 +1,46 @@
+{
+  "name": "form-generator",
+  "version": "1.0.0",
+  "description": "Library for generating html form using json.",
+  "main": "karma.conf.js",
+  "dependencies": {
+    "fsevents": "^1.2.7"
+  },
+  "devDependencies": {
+    "tslib": "^1.9.0"
+  },
+  "peerDependencies": {
+    "@angular/common": "^7.2.0",
+    "@angular/core": "^7.2.0",
+    "@angular/forms": "^7.2.0",
+    "lodash": "^4.17.11",
+    "ngx-bootstrap": "^3.2.0",
+    "bootstrap": "^4.3.1",
+    "@ng-select/ng-select": "^2.15.3",
+    "ngx-quill": "^4.6.11",
+    "quill": "^1.3.6",
+    "ngx-custom-validators": "^7.0.0",
+    "rxjs": "~6.3.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harishrathor/form-generator.git"
+  },
+  "keywords": [
+    "angular",
+    "json",
+    "dynamic-form",
+    "form",
+    "angular-form",
+    "json-form"
+  ],
+  "author": "harishrathor",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/harishrathor/form-generator/issues"
+  },
+  "homepage": "https://github.com/harishrathor/form-generator#readme"
+}

@@ -1,0 +1,13 @@
+<div class="form-group row field-container" [ngClass]="cssClasses.fieldContainerClasses" [ngStyle]="cssStyle.fieldContainerStyle"
+  [formGroup]="group">
+  <label [attr.for]="id" class="col-form-label field-label" [ngClass]="cssClasses.labelClasses" [ngStyle]="cssStyle.labelStyle">{{label}}</label>
+  <div class="input-container " [ngClass]="cssClasses.inputContainerClasses" [ngStyle]="cssStyle.inputContainerStyle">
+    <div class="custom-control custom-checkbox display-flex align-center">
+      <input type="checkbox" class="custom-control-input" [ngClass]="cssClasses.fieldClasses" [ngStyle]="cssStyle.fieldStyle"
+        [attr.id]="id" [formControlName]="name" [attr.placeholder]="placeholder">
+      <label class="custom-control-label" for="{{id}}"></label>
+    </div>
+    <small class="form-text text-muted" id="{{id}}__HELP">{{helpText}}</small>
+    <errors [errors]="errors" *ngIf="errors.length > 0"></errors>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="form-group row field-container" [ngClass]="cssClasses.fieldContainerClasses"
+	[ngStyle]="cssStyle.fieldContainerStyle" [formGroup]="group">
+	<label [attr.for]="id" class="col-form-label field-label" [ngClass]="cssClasses.labelClasses"
+		[ngStyle]="cssStyle.labelStyle">{{label}}</label>
+	<div class="input-container" [ngClass]="cssClasses.inputContainerClasses" [ngStyle]="cssStyle.inputContainerStyle">
+		<input class="form-control" [ngClass]="cssClasses.fieldClasses" [ngStyle]="cssStyle.fieldStyle" [attr.id]="id"
+			[formControlName]="name" [attr.placeholder]="placeholder" bsDatepicker [minDate]="minDate"
+			[maxDate]="maxDate" (bsValueChange)="callEventCallbacks('bsValueChange', $event)"
+			(onHidden)="callEventCallbacks('onHidden', $event)" (onShown)="callEventCallbacks('onShown', $event)">
+
+
+		<errors [errors]="errors"></errors>
+	</div>
+
+</div>

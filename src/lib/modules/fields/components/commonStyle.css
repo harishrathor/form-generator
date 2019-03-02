@@ -1,0 +1,56 @@
+
+.label-right {
+    flex-direction: row-reverse;
+}
+
+.label-bottom {
+    flex-direction: column-reverse;
+}
+
+.label-top {
+    flex-direction: column;
+}
+
+.label-left {
+    flex-direction: row;
+}
+
+
+.form-column-2 .label-left .field-label, .form-column-2 .label-left .input-container, .form-column-2 .label-right .field-label, .form-column-2 .label-right .input-container, .form-column-3 .label-left .field-label, .form-column-3 .label-left .input-container, .form-column-3 .label-right .field-label, .form-column-3 .label-right .input-container  {
+    width: 50%;
+}
+
+.form-column-2 .label-top .field-label, .form-column-2 .label-top .input-container, .form-column-2 .label-bottom .field-label, .form-column-2 .label-bottom .input-container {
+    width: 90%;
+}
+/* 
+.form-column-3 .label-left .field-label, .form-column-3 .label-left .input-container, .form-column-3 .label-right .field-label, .form-column-3 .label-right .input-container {
+    width: 50%;
+}
+ */
+.form-column-3 .label-top .field-label, .form-column-3 .label-top .input-container, .form-column-3 .label-bottom .field-label, .form-column-3 .label-bottom .input-container {
+    width: 100%;
+}
+
+
+.form-column-1 .field-label {
+  width: 25%;
+}
+
+.form-column-1 .input-container {
+  width: 40%;
+}
+
+.TXA-field-cotainer .label {
+    width: 25% !important;
+}
+
+.TXA-field-cotainer .input-container {
+  width: 75% !important;
+}
+
+.form-control.is-invalid,
+.was-validated .form-control:invalid {
+    background-image: unset !important;
+}
+
