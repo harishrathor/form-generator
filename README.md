@@ -324,7 +324,7 @@ export class AppComponent implements OnInit {
 }
 ```
 
-### Properties for `SEL, MSL, ACS`
+### Properties for `SEL, MSL, RAD`
 
 ```javascript
 {
@@ -339,8 +339,7 @@ export class AppComponent implements OnInit {
           "value": "value2"
         },
         //...
-    ],
-    "multiple": true // or false, only for ACS field. Whether there should be multiple selection or not.
+    ]
     //...
 }
 
