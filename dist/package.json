@@ -1,8 +1,8 @@
 {
-  "name": "form-generator",
+  "name": "json-form-generator",
   "version": "1.0.0",
   "description": "Library for generating html form using json.",
-  "main": "bundles/form-generator.umd.js",
+  "main": "bundles/json-form-generator.umd.js",
   "dependencies": {
     "fsevents": "^1.2.7",
     "tslib": "^1.9.0"
@@ -25,7 +25,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/harishrathor/form-generator.git"
+    "url": "git+https://github.com/harishrathor/json-form-generator.git"
   },
   "keywords": [
     "angular",
@@ -38,16 +38,16 @@
   "author": "harishrathor",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/harishrathor/form-generator/issues"
+    "url": "https://github.com/harishrathor/json-form-generator/issues"
   },
-  "homepage": "https://github.com/harishrathor/form-generator#readme",
-  "module": "fesm5/form-generator.js",
-  "es2015": "fesm2015/form-generator.js",
-  "esm5": "esm5/form-generator.js",
-  "esm2015": "esm2015/form-generator.js",
-  "fesm5": "fesm5/form-generator.js",
-  "fesm2015": "fesm2015/form-generator.js",
-  "typings": "form-generator.d.ts",
-  "metadata": "form-generator.metadata.json",
+  "homepage": "https://github.com/harishrathor/json-form-generator#readme",
+  "module": "fesm5/json-form-generator.js",
+  "es2015": "fesm2015/json-form-generator.js",
+  "esm5": "esm5/json-form-generator.js",
+  "esm2015": "esm2015/json-form-generator.js",
+  "fesm5": "fesm5/json-form-generator.js",
+  "fesm2015": "fesm2015/json-form-generator.js",
+  "typings": "json-form-generator.d.ts",
+  "metadata": "json-form-generator.metadata.json",
   "sideEffects": false
 }

@@ -1,7 +1,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@ng-select/ng-select'), require('ngx-quill'), require('ngx-custom-validators'), require('ngx-bootstrap/datepicker'), require('rxjs'), require('rxjs/operators'), require('ngx-bootstrap/timepicker'), require('@angular/common'), require('@angular/core'), require('lodash'), require('@angular/forms'), require('@angular/common/http')) :
-    typeof define === 'function' && define.amd ? define('form-generator', ['exports', '@ng-select/ng-select', 'ngx-quill', 'ngx-custom-validators', 'ngx-bootstrap/datepicker', 'rxjs', 'rxjs/operators', 'ngx-bootstrap/timepicker', '@angular/common', '@angular/core', 'lodash', '@angular/forms', '@angular/common/http'], factory) :
-    (factory((global['form-generator'] = {}),global.ngSelect,global.ngxQuill,global.ngxCustomValidators,global.datepicker,global.rxjs,global.rxjs.operators,global.timepicker,global.ng.common,global.ng.core,global._,global.ng.forms,global.ng.common.http));
+    typeof define === 'function' && define.amd ? define('json-form-generator', ['exports', '@ng-select/ng-select', 'ngx-quill', 'ngx-custom-validators', 'ngx-bootstrap/datepicker', 'rxjs', 'rxjs/operators', 'ngx-bootstrap/timepicker', '@angular/common', '@angular/core', 'lodash', '@angular/forms', '@angular/common/http'], factory) :
+    (factory((global['json-form-generator'] = {}),global.ngSelect,global.ngxQuill,global.ngxCustomValidators,global.datepicker,global.rxjs,global.rxjs.operators,global.timepicker,global.ng.common,global.ng.core,global._,global.ng.forms,global.ng.common.http));
 }(this, (function (exports,ngSelect,ngxQuill,ngxCustomValidators,datepicker,rxjs,operators,timepicker,common,i0,_,forms,i1) { 'use strict';
 
     /**
@@ -3897,4 +3897,4 @@
 
 })));
 
-//# sourceMappingURL=form-generator.umd.js.map
+//# sourceMappingURL=json-form-generator.umd.js.map

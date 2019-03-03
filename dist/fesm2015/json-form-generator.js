@@ -3142,4 +3142,4 @@ SimpleFormGeneratorModule.decorators = [
 
 export { SimpleFormGeneratorModule, SimpleFormComponent as ɵa, FieldDirective as ɵf, AnchorComponent as ɵbc, AutocompleteComponent as ɵbe, BlankComponent as ɵba, CButtonComponent as ɵu, CFieldsetComponent as ɵbd, CSelectComponent as ɵp, CheckboxComponent as ɵs, DateTimeComponent as ɵv, DateComponent as ɵm, ErrorsComponent as ɵl, Field as ɵi, FileComponent as ɵy, HiddenComponent as ɵz, HtmlEditorComponent as ɵbb, MonthComponent as ɵx, MultiselectComponent as ɵq, NumberComponent as ɵo, PasswordComponent as ɵn, RadioComponent as ɵr, TextAreaComponent as ɵt, TextComponent as ɵh, TimeComponent as ɵw, FieldsModule as ɵg, ValidatorService as ɵj, DefaultsService as ɵc, HttpService as ɵk, LoggerService as ɵd, SchemaService as ɵb, UtilService as ɵe };
 
-//# sourceMappingURL=form-generator.js.map
+//# sourceMappingURL=json-form-generator.js.map

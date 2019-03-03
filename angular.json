@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "libraries",
   "projects": {
-    "FormGenerator": {
+    "JsonFormGenerator": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "library",
@@ -39,5 +39,5 @@
       }
     }
   },
-  "defaultProject": "FormGenerator"
+  "defaultProject": "JsonFormGenerator"
 }
