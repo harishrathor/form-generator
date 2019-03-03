@@ -13,8 +13,19 @@ export class CSelectComponent extends Field {
 
     @ViewChild('ngSelect') ngSelectComponent: any;
 
+    protected _options: any;
+
     protected _eventsAndCallbacksMapping: any;
     public loading = false;
+
+    protected _init() {
+        try {
+            super._init();
+            this.options = this.fieldDef.options || [];
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     protected _applyEvents() {
         try {
@@ -63,7 +74,11 @@ export class CSelectComponent extends Field {
     }
 
     get options() {
-        return this.fieldDef.options || [];
+        return this._options || [];
+    }
+
+    set options(options) {
+        this._options = options;
     }
 
     get multiple() {

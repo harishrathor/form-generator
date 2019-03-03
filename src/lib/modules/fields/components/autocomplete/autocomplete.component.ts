@@ -67,8 +67,8 @@ export class AutocompleteComponent extends CSelectComponent {
             }
 
             const data = {
-                term,
-                code: this.code
+                searchTerm: term,
+                fieldCode: this.code
             };
             if (searchData.fetchFn) {
                 const searchFn = this._getEventCallback( this._defaults.ACS_SEARCH_EVENT_NAME, searchData.fetchFn );
@@ -99,7 +99,7 @@ export class AutocompleteComponent extends CSelectComponent {
                 const afterSearchFn = this._getEventCallback( this._defaults.ACS_SEARCH_EVENT_NAME, searchData.afterFetchFn );
                 if (afterSearchFn) {
                     let optionsData = afterSearchFn({
-                        term,
+                        searchTerm: term,
                         fieldCode: this.code,
                         formCode: this.formCode,
                         response

@@ -35,6 +35,8 @@ export class Field implements OnInit, AfterViewInit {
     protected _errorMessageData: any;
     protected _eventsDataObj: any;
     protected _validationsDataObj: any;
+    protected _hidden: boolean;
+    protected _hideLabel: boolean;
     
     constructor(protected _elemRef: ElementRef, protected _renderer: Renderer2, protected _validatorService: ValidatorService, protected _defaults: DefaultsService, protected _httpService: HttpService) {
         this.initialize();
@@ -45,6 +47,8 @@ export class Field implements OnInit, AfterViewInit {
             this._eventsDataObj = {};
             this._errorMessageData = {};
             this._validationsDataObj = {};
+            this._hideLabel = false;
+            this._hidden = false;
         } catch (error) {
             console.log(error);
         }
@@ -67,7 +71,7 @@ export class Field implements OnInit, AfterViewInit {
                 this._renderer.addClass(this._elemRef.nativeElement, 'hidden');
             }
 
-            if (this.disabled) {
+             if (this.fieldDef.disabled) {
                 const field = this.fieldRef;
                 if (field) {
                     this._renderer.setAttribute(field, 'disabled', 'true');
@@ -185,8 +189,9 @@ export class Field implements OnInit, AfterViewInit {
 
      protected _init() {
          try {
-             (<any>window)[this.code] = this;
-             this.parent.fieldsComponent[this.code] = this;
+            this._hidden = this.fieldDef.hidden || false;
+             this._hideLabel = this.fieldDef.hideLabel || false;
+            this.parent.fieldsComponent[this.code] = this;
              this._storeArraysInObjects();
              this._initCssClasses();
              this._initCssStyle();
@@ -348,11 +353,28 @@ export class Field implements OnInit, AfterViewInit {
     }
 
     get hidden() {
-        return this.fieldDef.hidden || false;
+        return this._hidden || false;
+    }
+
+    set hidden(val: boolean) {
+        if (val === true) {
+            this._renderer.addClass(this._elemRef.nativeElement, 'hidden');
+        } else {
+            this._renderer.removeClass(this._elemRef.nativeElement, 'hidden');
+        }
+        this._hidden = val;
     }
 
     get disabled() {
-        return this.fieldDef.disabled || false;
+        return  this.control.disabled;
+    }
+
+    set disable(prop: boolean) {
+        this.control.disable();
+    }
+
+    set enable(prop: boolean) {
+        this.control.enable();
     }
 
     get control() {
@@ -434,7 +456,16 @@ export class Field implements OnInit, AfterViewInit {
     }
 
     get hideLabel() {
-        return this.fieldDef.hideLabel || false;
+        return this._hideLabel || false;
+    }
+
+    set hideLabel(val: boolean) {
+        if (val === true) {
+            this._renderer.addClass(this.labelRef, 'hidden');
+        } else {
+            this._renderer.removeClass(this.labelRef, 'hidden');
+        }
+        this._hideLabel = val;
     }
 
     get valid() {

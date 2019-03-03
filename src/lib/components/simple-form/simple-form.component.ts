@@ -6,6 +6,12 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { DefaultsService } from './../../services/defaults.service';
 import * as _ from 'lodash';
 
+
+interface EventHandlerCallbackInterface {
+    name: string;
+    arguments?: any[];
+    handlerFnOwner?: string;
+}
 @Component({
     selector: 'simple-form',
     templateUrl: './simple-form.component.html',
@@ -18,7 +24,7 @@ export class SimpleFormComponent implements OnInit, AfterViewInit {
     schema: any;
 
     @Input()
-    formComponent: any;
+    formComponent?: any;
 
     @Input()
     pageComponent: any;
@@ -38,6 +44,8 @@ export class SimpleFormComponent implements OnInit, AfterViewInit {
     public fieldsComponent: any;
     public isCollapsed: boolean;
 
+    protected _hidden: boolean; 
+
     constructor(
         protected _fb: FormBuilder,
         protected _schemaService: SchemaService,
@@ -54,7 +62,8 @@ export class SimpleFormComponent implements OnInit, AfterViewInit {
        try {
 		   this.instance = this;
 		   this.fieldsComponent = {};
-		   this.isCollapsed = false;
+           this.isCollapsed = false;
+           this._hidden = false;
 		   this.initialize();
 	   } catch (error) {
 		   console.log(error);
@@ -130,8 +139,18 @@ export class SimpleFormComponent implements OnInit, AfterViewInit {
 
     protected _init() {
         try {
-            this.pageComponent.forms[this.code] = this;
+            if (this.pageComponent && this.pageComponent.forms) {
+                this.pageComponent.forms[this.code] = this;
+            } else {
+                console.log("Please provide [pageComponent] input and define 'forms' definition in the past object as pageComponent.");
+            }
             this.formComponent.form = this;
+            if (this.formComponent && this.pageComponent.form) {
+                this.formComponent.form = this;
+            } else {
+                console.log("Please provide [formComponent] input and define 'form' definition in the past object as pageComponent.");
+            }
+            this.hidden = this.schema.hidden || false;
             this.code = this.schema.code;
             this._schemaService.addSchema(this.code, this.schema);
             this.schema = this._schemaService.getSchemaBySchemaKey(this.code);
@@ -173,7 +192,69 @@ export class SimpleFormComponent implements OnInit, AfterViewInit {
 
     public onParentFieldValueChange(parentFieldName: string, childFieldNameArr: string[], changes: SimpleChange) {
         try {
-            console.log('onParentFieldValueChange', parentFieldName, childFieldNameArr, changes);
+            if (this.onParentFieldValueChangeFn) {
+                const callback = this._getEventCallback('parentChange', this.onParentFieldValueChangeFn);
+                if (callback) {
+                    callback(parentFieldName, childFieldNameArr, changes);
+                }
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    protected _getEventCallback(eventName: string, callbackData: EventHandlerCallbackInterface) {
+        try {
+            const callbackName = callbackData.name;
+            if (!callbackData.arguments) {
+                callbackData.arguments = [];
+            }
+
+            const handlerFnOwner = this._getCallbackOwner(callbackData.handlerFnOwner);
+            if (handlerFnOwner && handlerFnOwner[callbackName] && typeof handlerFnOwner[callbackName] === 'function') {
+                return this.eventHandler.bind(this, callbackData.handlerFnOwner, callbackName, callbackData.arguments);
+            } else {
+                console.log(`Callback function ${callbackName} for event ${eventName} does not exist in `, handlerFnOwner);
+                return null;
+            }
+        } catch (error) {
+            console.log(error);
+            return null;
+        }
+    }
+
+    public eventHandler(ownerType: any, fnName: string, argsArr: any, eventdata?: any) {
+        try {
+            if (!argsArr) {
+                argsArr = [];
+            }
+            argsArr = Object.assign([], argsArr);
+            const callbackFnOwner = this._getCallbackOwner(ownerType);
+            if (eventdata) {
+                argsArr.push(eventdata);
+            }
+            if (!callbackFnOwner) {
+                return null;
+            }
+            return callbackFnOwner[fnName].apply(callbackFnOwner, argsArr);
+        } catch (error) {
+            console.log(error);
+            return null;
+        }
+    }
+
+    protected _getCallbackOwner(ownerType: string) {
+        try {
+            if (!ownerType) {
+                ownerType = 'P';
+            }
+            let callbackFnOwner = this.pageComponent;
+            if (ownerType === 'F') {
+                callbackFnOwner = this.formComponent;
+            } else if (typeof ownerType === 'object') {
+                callbackFnOwner = ownerType;
+            }
+            return callbackFnOwner;
         } catch (error) {
             console.log(error);
         }
@@ -219,6 +300,10 @@ export class SimpleFormComponent implements OnInit, AfterViewInit {
 		return this.formGoup.value;
     }
 
+    set value(groupValue) {
+        this.formGoup.patchValue(groupValue);
+    }
+
     get order() {
         return this.schema.order || 1;
     }
@@ -228,7 +313,32 @@ export class SimpleFormComponent implements OnInit, AfterViewInit {
     }
 
     get hidden() {
-        return this.schema.hidden || false;
+        return this._hidden || false;
+    }
+
+    set hidden(hidden: boolean) {
+        if (hidden === true) {
+            this._renderer.addClass(this._elemRef.nativeElement, 'hidden');
+        } else {
+            this._renderer.removeClass(this._elemRef.nativeElement, 'hidden');
+        }
+        this._hidden = hidden;
+    }
+
+    get onParentFieldValueChangeFn() {
+        return this.schema.onParentFieldValueChange || null;
+    }
+
+    set disable(prop) {
+        this.formGoup.disable();
+    }
+
+    set enable(prop) {
+        this.formGoup.enable();
+    }
+
+    get formRef() {
+        return this._elemRef.nativeElement;
     }
 
 }
