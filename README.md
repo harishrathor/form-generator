@@ -18,6 +18,12 @@ npm install ngx-custom-validators --save
 npm install rxjs --save
 ```
 
+### Now install package
+
+```bash
+npm install json-form-generator --save
+```
+
 # Supported field types.
 
 - Text
