@@ -18,6 +18,12 @@ npm install ngx-custom-validators --save
 npm install rxjs --save
 ```
 
+### Now install package
+
+```bash
+npm install json-form-generator --save
+```
+
 # Supported field types.
 
 - Text
@@ -48,7 +54,7 @@ import `SimpleFormGeneratorModule`  in `app.module.ts`.
 ```typescript
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { SimpleFormGeneratorModule } from 'form-generator';
+import { SimpleFormGeneratorModule } from 'json-form-generator';
 
 import { AppComponent } from './app.component';
 import { MyFormComponent } from './components/my-form/app.component';
