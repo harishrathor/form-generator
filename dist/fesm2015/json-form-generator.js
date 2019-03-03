@@ -2782,7 +2782,6 @@ class SimpleFormComponent {
             else {
                 console.log("Please provide [pageComponent] input and define 'forms' definition in the past object as pageComponent.");
             }
-            this.formComponent.form = this;
             if (this.formComponent && this.pageComponent.form) {
                 this.formComponent.form = this;
             }

@@ -304,6 +304,7 @@ export class AppComponent implements OnInit {
 - Plugin for `DAT, DATETIME` is `ngx-bootstrap` datepicker. So `validations` and `events` supported by this plugin are supported.
 - Plugin for `TIME` is `ngx-bootstrap` timepicker. So `validations` and `events` supported by this plugin are supported.
 - Plugin for `validations` for all fields, is `ngx-custom-validators`. So the validations supported by used external plugin or `ngx-custom-validators` are supported.
+- Icon library: `Material Design`.
 
 ### Field Definition JSON common properties (Not for fieldset (FST));
 
@@ -526,7 +527,8 @@ export class AppComponent implements OnInit {
             }
         ]
       }
-    ]
+    ],
+    icon: "material desgin icon content", // Internally material design icon library is being used. So icon content will be passed here.
     //...
 }
 ```
