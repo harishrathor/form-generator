@@ -142,15 +142,16 @@ export class Field implements OnInit, AfterViewInit {
         }
     }
 
-    public eventHandler(ownerType: any, fnName: string, argsArr: any, eventdata?: any) {
+    public eventHandler(ownerType: any, fnName: string, argsArr: any, ...restArgsArr) {
         try {
             if (!argsArr) {
                 argsArr = [];
             }
             argsArr = Object.assign([], argsArr);
             const callbackFnOwner = this._getCallbackOwner(ownerType);
-            if (eventdata) {
-                argsArr.push(eventdata);
+            
+            if (restArgsArr) {
+                argsArr = [...argsArr, ...restArgsArr]
             }
             return callbackFnOwner[fnName].apply(callbackFnOwner, argsArr);
         } catch (error) {
@@ -191,7 +192,7 @@ export class Field implements OnInit, AfterViewInit {
          try {
             this._hidden = this.fieldDef.hidden || false;
              this._hideLabel = this.fieldDef.hideLabel || false;
-            this.parent.fieldsComponent[this.code] = this;
+            this.parent.fieldsComponent[this.name] = this;
              this._storeArraysInObjects();
              this._initCssClasses();
              this._initCssStyle();

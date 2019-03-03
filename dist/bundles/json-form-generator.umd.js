@@ -582,13 +582,13 @@
                 notEqual: 'Value should not be equal to XXVALUEXX.',
                 equalTo: 'Value should be equal to XXVALUEXX.',
                 notEqualTo: 'Value should not be equal to XXVALUEXX.',
-                lt: 'Please fill value less than XXVALUEXX',
+                lt: 'Please fill value less than XXVALUEXX.',
                 gte: 'Please fill value greater than or equal to XXVALUEXX',
                 json: 'Invalid json.',
                 lte: 'Please fill value less than or equal to XXVALUEXX',
                 max: 'Max value XXVALUEXX is allowed',
                 maxDate: 'Max date XXVALUEXX is allowed.',
-                min: 'Min value XXVALUEXX is allowed',
+                min: 'Min value XXVALUEXX is allowed.',
                 minDate: 'Min date XXVALUEXX is allowed.',
                 number: 'Numbers only required.',
                 property: 'Invalid property.',
@@ -1213,6 +1213,35 @@
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     }
+    function __read(o, n) {
+        var m = typeof Symbol === "function" && o[Symbol.iterator];
+        if (!m)
+            return o;
+        var i = m.call(o), r, ar = [], e;
+        try {
+            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
+                ar.push(r.value);
+        }
+        catch (error) {
+            e = { error: error };
+        }
+        finally {
+            try {
+                if (r && !r.done && (m = i["return"]))
+                    m.call(i);
+            }
+            finally {
+                if (e)
+                    throw e.error;
+            }
+        }
+        return ar;
+    }
+    function __spread() {
+        for (var ar = [], i = 0; i < arguments.length; i++)
+            ar = ar.concat(__read(arguments[i]));
+        return ar;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -1385,17 +1414,21 @@
          * @param {?} ownerType
          * @param {?} fnName
          * @param {?} argsArr
-         * @param {?=} eventdata
+         * @param {...?} restArgsArr
          * @return {?}
          */
         Field.prototype.eventHandler = /**
          * @param {?} ownerType
          * @param {?} fnName
          * @param {?} argsArr
-         * @param {?=} eventdata
+         * @param {...?} restArgsArr
          * @return {?}
          */
-            function (ownerType, fnName, argsArr, eventdata) {
+            function (ownerType, fnName, argsArr) {
+                var restArgsArr = [];
+                for (var _i = 3; _i < arguments.length; _i++) {
+                    restArgsArr[_i - 3] = arguments[_i];
+                }
                 try {
                     if (!argsArr) {
                         argsArr = [];
@@ -1403,8 +1436,8 @@
                     argsArr = Object.assign([], argsArr);
                     /** @type {?} */
                     var callbackFnOwner = this._getCallbackOwner(ownerType);
-                    if (eventdata) {
-                        argsArr.push(eventdata);
+                    if (restArgsArr) {
+                        argsArr = __spread(argsArr, restArgsArr);
                     }
                     return callbackFnOwner[fnName].apply(callbackFnOwner, argsArr);
                 }
@@ -1482,7 +1515,7 @@
                 try {
                     this._hidden = this.fieldDef.hidden || false;
                     this._hideLabel = this.fieldDef.hideLabel || false;
-                    this.parent.fieldsComponent[this.code] = this;
+                    this.parent.fieldsComponent[this.name] = this;
                     this._storeArraysInObjects();
                     this._initCssClasses();
                     this._initCssStyle();
@@ -3411,13 +3444,13 @@
                         this.pageComponent.forms[this.code] = this;
                     }
                     else {
-                        console.log("Please provide [pageComponent] input and define 'forms' definition in the past object as pageComponent.");
+                        console.log("Please provide [pageComponent] input and define 'forms' definition in the passed object as pageComponent.");
                     }
                     if (this.formComponent && this.pageComponent.form) {
                         this.formComponent.form = this;
                     }
                     else {
-                        console.log("Please provide [formComponent] input and define 'form' definition in the past object as pageComponent.");
+                        console.log("Please provide [formComponent] input and define 'form' definition in the passed object as formComponent.");
                     }
                     this.hidden = this.schema.hidden || false;
                     this.code = this.schema.code;
@@ -3502,7 +3535,7 @@
                         /** @type {?} */
                         var callback = this._getEventCallback('parentChange', this.onParentFieldValueChangeFn);
                         if (callback) {
-                            callback(parentFieldName, childFieldNameArr, changes);
+                            callback(this.code, parentFieldName, childFieldNameArr, changes);
                         }
                     }
                 }
@@ -3548,17 +3581,21 @@
          * @param {?} ownerType
          * @param {?} fnName
          * @param {?} argsArr
-         * @param {?=} eventdata
+         * @param {...?} restArgsArr
          * @return {?}
          */
         SimpleFormComponent.prototype.eventHandler = /**
          * @param {?} ownerType
          * @param {?} fnName
          * @param {?} argsArr
-         * @param {?=} eventdata
+         * @param {...?} restArgsArr
          * @return {?}
          */
-            function (ownerType, fnName, argsArr, eventdata) {
+            function (ownerType, fnName, argsArr) {
+                var restArgsArr = [];
+                for (var _i = 3; _i < arguments.length; _i++) {
+                    restArgsArr[_i - 3] = arguments[_i];
+                }
                 try {
                     if (!argsArr) {
                         argsArr = [];
@@ -3566,11 +3603,8 @@
                     argsArr = Object.assign([], argsArr);
                     /** @type {?} */
                     var callbackFnOwner = this._getCallbackOwner(ownerType);
-                    if (eventdata) {
-                        argsArr.push(eventdata);
-                    }
-                    if (!callbackFnOwner) {
-                        return null;
+                    if (restArgsArr) {
+                        argsArr = __spread(argsArr, restArgsArr);
                     }
                     return callbackFnOwner[fnName].apply(callbackFnOwner, argsArr);
                 }

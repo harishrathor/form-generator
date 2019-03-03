@@ -33,7 +33,7 @@ export declare class Field implements OnInit, AfterViewInit {
     protected _afterViewInit(): void;
     protected _applyEvents(): void;
     protected _getEventCallback(eventName: string, callbackData: EventHandlerCallbackInterface): any;
-    eventHandler(ownerType: any, fnName: string, argsArr: any, eventdata?: any): any;
+    eventHandler(ownerType: any, fnName: string, argsArr: any, ...restArgsArr: any[]): any;
     protected _getCallbackOwner(ownerType: string): any;
     protected _addCssClasses(element: HTMLElement, spaceSeparatedClasses: string): void;
     protected _init(): void;

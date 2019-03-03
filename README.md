@@ -2,6 +2,8 @@
 
 Angular 7 library for generating forms dynamically using JSON. 
 
+## [See Demo](https://stackblitz.com/edit/angular-nbrlgf)
+
 # Installation
 
 #### Install following npm dependencies by reading documentation.
@@ -243,7 +245,7 @@ export class AppComponent implements OnInit {
   },
   "onParentFieldValueChange": { // Define this property if there is parent child relationship in the fields.
     "name": "onParentValueChange", /* any method name defined in "handlerFnOwner".
-    Arguments: (...your arguments, parentFieldName: string, childFieldsNameArr: string[], changeValue: SimpleChange)
+    Arguments: (...your arguments, formCode: string, parentFieldName: string, childFieldsNameArr: string[], changeValue: SimpleChange)
     */
     "arguments": ["any", "argument", "..."],
     "handlerFnOwner": "'F' | 'P' | object" /*Default: 'P'. There are three possible values:
@@ -476,7 +478,7 @@ export class AppComponent implements OnInit {
         Arguments: (...your arguments, searchTerm: string, fieldCode: string) 
         Desired Return type: boolean, if false is returned then options will not be fetched.*/
           "name": "preFetchACS", // any name defined in "handlerFnOwner"
-          "arguments": ['from', 'pre-acs', 'search'],
+          "arguments": ['any', 'argume', 'here'],
           "handlerFnOwner": "'F' | 'P' | object"
         },
         "afterFetchFn": { /* callback which will be called after fetching options. 
@@ -581,7 +583,7 @@ class SimpleFormComponent {
     public formGoup: FormGroup; // This is the most important property for manipulate fields.
     public fieldsComponent: any; /* This contains intances of all fields component.
     {
-        'FIELD_CODE': FieldComponent
+        'field-name': FieldComponent
     }
     
     */

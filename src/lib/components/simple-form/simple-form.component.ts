@@ -142,13 +142,13 @@ export class SimpleFormComponent implements OnInit, AfterViewInit {
             if (this.pageComponent && this.pageComponent.forms) {
                 this.pageComponent.forms[this.code] = this;
             } else {
-                console.log("Please provide [pageComponent] input and define 'forms' definition in the past object as pageComponent.");
+                console.log("Please provide [pageComponent] input and define 'forms' definition in the passed object as pageComponent.");
             }
             
             if (this.formComponent && this.pageComponent.form) {
                 this.formComponent.form = this;
             } else {
-                console.log("Please provide [formComponent] input and define 'form' definition in the past object as pageComponent.");
+                console.log("Please provide [formComponent] input and define 'form' definition in the passed object as formComponent.");
             }
             this.hidden = this.schema.hidden || false;
             this.code = this.schema.code;
@@ -195,7 +195,7 @@ export class SimpleFormComponent implements OnInit, AfterViewInit {
             if (this.onParentFieldValueChangeFn) {
                 const callback = this._getEventCallback('parentChange', this.onParentFieldValueChangeFn);
                 if (callback) {
-                    callback(parentFieldName, childFieldNameArr, changes);
+                    callback(this.code, parentFieldName, childFieldNameArr, changes);
                 }
             }
         } catch (error) {
@@ -223,18 +223,16 @@ export class SimpleFormComponent implements OnInit, AfterViewInit {
         }
     }
 
-    public eventHandler(ownerType: any, fnName: string, argsArr: any, eventdata?: any) {
+    public eventHandler(ownerType: any, fnName: string, argsArr: any, ...restArgsArr) {
         try {
             if (!argsArr) {
                 argsArr = [];
             }
             argsArr = Object.assign([], argsArr);
             const callbackFnOwner = this._getCallbackOwner(ownerType);
-            if (eventdata) {
-                argsArr.push(eventdata);
-            }
-            if (!callbackFnOwner) {
-                return null;
+
+            if (restArgsArr) {
+                argsArr = [...argsArr, ...restArgsArr]
             }
             return callbackFnOwner[fnName].apply(callbackFnOwner, argsArr);
         } catch (error) {

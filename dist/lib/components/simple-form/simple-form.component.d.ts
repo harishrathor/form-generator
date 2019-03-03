@@ -44,7 +44,7 @@ export declare class SimpleFormComponent implements OnInit, AfterViewInit {
     protected _initFormGroup(): void;
     onParentFieldValueChange(parentFieldName: string, childFieldNameArr: string[], changes: SimpleChange): void;
     protected _getEventCallback(eventName: string, callbackData: EventHandlerCallbackInterface): any;
-    eventHandler(ownerType: any, fnName: string, argsArr: any, eventdata?: any): any;
+    eventHandler(ownerType: any, fnName: string, argsArr: any, ...restArgsArr: any[]): any;
     protected _getCallbackOwner(ownerType: string): any;
     readonly label: any;
     readonly helps: any;

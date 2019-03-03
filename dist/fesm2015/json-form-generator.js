@@ -490,13 +490,13 @@ class ValidatorService {
             notEqual: 'Value should not be equal to XXVALUEXX.',
             equalTo: 'Value should be equal to XXVALUEXX.',
             notEqualTo: 'Value should not be equal to XXVALUEXX.',
-            lt: 'Please fill value less than XXVALUEXX',
+            lt: 'Please fill value less than XXVALUEXX.',
             gte: 'Please fill value greater than or equal to XXVALUEXX',
             json: 'Invalid json.',
             lte: 'Please fill value less than or equal to XXVALUEXX',
             max: 'Max value XXVALUEXX is allowed',
             maxDate: 'Max date XXVALUEXX is allowed.',
-            min: 'Min value XXVALUEXX is allowed',
+            min: 'Min value XXVALUEXX is allowed.',
             minDate: 'Min date XXVALUEXX is allowed.',
             number: 'Numbers only required.',
             property: 'Invalid property.',
@@ -1119,10 +1119,10 @@ class Field {
      * @param {?} ownerType
      * @param {?} fnName
      * @param {?} argsArr
-     * @param {?=} eventdata
+     * @param {...?} restArgsArr
      * @return {?}
      */
-    eventHandler(ownerType, fnName, argsArr, eventdata) {
+    eventHandler(ownerType, fnName, argsArr, ...restArgsArr) {
         try {
             if (!argsArr) {
                 argsArr = [];
@@ -1130,8 +1130,8 @@ class Field {
             argsArr = Object.assign([], argsArr);
             /** @type {?} */
             const callbackFnOwner = this._getCallbackOwner(ownerType);
-            if (eventdata) {
-                argsArr.push(eventdata);
+            if (restArgsArr) {
+                argsArr = [...argsArr, ...restArgsArr];
             }
             return callbackFnOwner[fnName].apply(callbackFnOwner, argsArr);
         }
@@ -1194,7 +1194,7 @@ class Field {
         try {
             this._hidden = this.fieldDef.hidden || false;
             this._hideLabel = this.fieldDef.hideLabel || false;
-            this.parent.fieldsComponent[this.code] = this;
+            this.parent.fieldsComponent[this.name] = this;
             this._storeArraysInObjects();
             this._initCssClasses();
             this._initCssStyle();
@@ -2780,13 +2780,13 @@ class SimpleFormComponent {
                 this.pageComponent.forms[this.code] = this;
             }
             else {
-                console.log("Please provide [pageComponent] input and define 'forms' definition in the past object as pageComponent.");
+                console.log("Please provide [pageComponent] input and define 'forms' definition in the passed object as pageComponent.");
             }
             if (this.formComponent && this.pageComponent.form) {
                 this.formComponent.form = this;
             }
             else {
-                console.log("Please provide [formComponent] input and define 'form' definition in the past object as pageComponent.");
+                console.log("Please provide [formComponent] input and define 'form' definition in the passed object as formComponent.");
             }
             this.hidden = this.schema.hidden || false;
             this.code = this.schema.code;
@@ -2855,7 +2855,7 @@ class SimpleFormComponent {
                 /** @type {?} */
                 const callback = this._getEventCallback('parentChange', this.onParentFieldValueChangeFn);
                 if (callback) {
-                    callback(parentFieldName, childFieldNameArr, changes);
+                    callback(this.code, parentFieldName, childFieldNameArr, changes);
                 }
             }
         }
@@ -2895,10 +2895,10 @@ class SimpleFormComponent {
      * @param {?} ownerType
      * @param {?} fnName
      * @param {?} argsArr
-     * @param {?=} eventdata
+     * @param {...?} restArgsArr
      * @return {?}
      */
-    eventHandler(ownerType, fnName, argsArr, eventdata) {
+    eventHandler(ownerType, fnName, argsArr, ...restArgsArr) {
         try {
             if (!argsArr) {
                 argsArr = [];
@@ -2906,11 +2906,8 @@ class SimpleFormComponent {
             argsArr = Object.assign([], argsArr);
             /** @type {?} */
             const callbackFnOwner = this._getCallbackOwner(ownerType);
-            if (eventdata) {
-                argsArr.push(eventdata);
-            }
-            if (!callbackFnOwner) {
-                return null;
+            if (restArgsArr) {
+                argsArr = [...argsArr, ...restArgsArr];
             }
             return callbackFnOwner[fnName].apply(callbackFnOwner, argsArr);
         }

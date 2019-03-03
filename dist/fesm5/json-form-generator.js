@@ -2,11 +2,11 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { QuillModule } from 'ngx-quill';
 import { CustomValidators } from 'ngx-custom-validators';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { __extends } from 'tslib';
 import { of, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { CommonModule } from '@angular/common';
+import { __extends, __spread } from 'tslib';
 import { Injectable, Directive, Component, Input, NgModule, ElementRef, Renderer2, defineInjectable, inject, ViewEncapsulation, ViewChild, EventEmitter, Output } from '@angular/core';
 import { assign, includes } from 'lodash';
 import { Validators, FormsModule, ReactiveFormsModule, FormBuilder, FormControl } from '@angular/forms';
@@ -600,13 +600,13 @@ var ValidatorService = /** @class */ (function () {
             notEqual: 'Value should not be equal to XXVALUEXX.',
             equalTo: 'Value should be equal to XXVALUEXX.',
             notEqualTo: 'Value should not be equal to XXVALUEXX.',
-            lt: 'Please fill value less than XXVALUEXX',
+            lt: 'Please fill value less than XXVALUEXX.',
             gte: 'Please fill value greater than or equal to XXVALUEXX',
             json: 'Invalid json.',
             lte: 'Please fill value less than or equal to XXVALUEXX',
             max: 'Max value XXVALUEXX is allowed',
             maxDate: 'Max date XXVALUEXX is allowed.',
-            min: 'Min value XXVALUEXX is allowed',
+            min: 'Min value XXVALUEXX is allowed.',
             minDate: 'Min date XXVALUEXX is allowed.',
             number: 'Numbers only required.',
             property: 'Invalid property.',
@@ -1376,17 +1376,21 @@ var Field = /** @class */ (function () {
      * @param {?} ownerType
      * @param {?} fnName
      * @param {?} argsArr
-     * @param {?=} eventdata
+     * @param {...?} restArgsArr
      * @return {?}
      */
     Field.prototype.eventHandler = /**
      * @param {?} ownerType
      * @param {?} fnName
      * @param {?} argsArr
-     * @param {?=} eventdata
+     * @param {...?} restArgsArr
      * @return {?}
      */
-    function (ownerType, fnName, argsArr, eventdata) {
+    function (ownerType, fnName, argsArr) {
+        var restArgsArr = [];
+        for (var _i = 3; _i < arguments.length; _i++) {
+            restArgsArr[_i - 3] = arguments[_i];
+        }
         try {
             if (!argsArr) {
                 argsArr = [];
@@ -1394,8 +1398,8 @@ var Field = /** @class */ (function () {
             argsArr = Object.assign([], argsArr);
             /** @type {?} */
             var callbackFnOwner = this._getCallbackOwner(ownerType);
-            if (eventdata) {
-                argsArr.push(eventdata);
+            if (restArgsArr) {
+                argsArr = __spread(argsArr, restArgsArr);
             }
             return callbackFnOwner[fnName].apply(callbackFnOwner, argsArr);
         }
@@ -1474,7 +1478,7 @@ var Field = /** @class */ (function () {
         try {
             this._hidden = this.fieldDef.hidden || false;
             this._hideLabel = this.fieldDef.hideLabel || false;
-            this.parent.fieldsComponent[this.code] = this;
+            this.parent.fieldsComponent[this.name] = this;
             this._storeArraysInObjects();
             this._initCssClasses();
             this._initCssStyle();
@@ -3472,13 +3476,13 @@ var SimpleFormComponent = /** @class */ (function () {
                 this.pageComponent.forms[this.code] = this;
             }
             else {
-                console.log("Please provide [pageComponent] input and define 'forms' definition in the past object as pageComponent.");
+                console.log("Please provide [pageComponent] input and define 'forms' definition in the passed object as pageComponent.");
             }
             if (this.formComponent && this.pageComponent.form) {
                 this.formComponent.form = this;
             }
             else {
-                console.log("Please provide [formComponent] input and define 'form' definition in the past object as pageComponent.");
+                console.log("Please provide [formComponent] input and define 'form' definition in the passed object as formComponent.");
             }
             this.hidden = this.schema.hidden || false;
             this.code = this.schema.code;
@@ -3564,7 +3568,7 @@ var SimpleFormComponent = /** @class */ (function () {
                 /** @type {?} */
                 var callback = this._getEventCallback('parentChange', this.onParentFieldValueChangeFn);
                 if (callback) {
-                    callback(parentFieldName, childFieldNameArr, changes);
+                    callback(this.code, parentFieldName, childFieldNameArr, changes);
                 }
             }
         }
@@ -3610,17 +3614,21 @@ var SimpleFormComponent = /** @class */ (function () {
      * @param {?} ownerType
      * @param {?} fnName
      * @param {?} argsArr
-     * @param {?=} eventdata
+     * @param {...?} restArgsArr
      * @return {?}
      */
     SimpleFormComponent.prototype.eventHandler = /**
      * @param {?} ownerType
      * @param {?} fnName
      * @param {?} argsArr
-     * @param {?=} eventdata
+     * @param {...?} restArgsArr
      * @return {?}
      */
-    function (ownerType, fnName, argsArr, eventdata) {
+    function (ownerType, fnName, argsArr) {
+        var restArgsArr = [];
+        for (var _i = 3; _i < arguments.length; _i++) {
+            restArgsArr[_i - 3] = arguments[_i];
+        }
         try {
             if (!argsArr) {
                 argsArr = [];
@@ -3628,11 +3636,8 @@ var SimpleFormComponent = /** @class */ (function () {
             argsArr = Object.assign([], argsArr);
             /** @type {?} */
             var callbackFnOwner = this._getCallbackOwner(ownerType);
-            if (eventdata) {
-                argsArr.push(eventdata);
-            }
-            if (!callbackFnOwner) {
-                return null;
+            if (restArgsArr) {
+                argsArr = __spread(argsArr, restArgsArr);
             }
             return callbackFnOwner[fnName].apply(callbackFnOwner, argsArr);
         }
