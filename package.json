@@ -1,11 +1,8 @@
 {
   "name": "json-form-generator",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Library for generating html form using json.",
   "main": "karma.conf.js",
-  "dependencies": {
-    "fsevents": "^1.2.7"
-  },
   "devDependencies": {
     "tslib": "^1.9.0"
   },

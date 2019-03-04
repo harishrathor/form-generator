@@ -1,12 +1,8 @@
 {
   "name": "json-form-generator",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Library for generating html form using json.",
   "main": "bundles/json-form-generator.umd.js",
-  "dependencies": {
-    "fsevents": "^1.2.7",
-    "tslib": "^1.9.0"
-  },
   "devDependencies": {
     "tslib": "^1.9.0"
   },
@@ -56,5 +52,8 @@
   "fesm2015": "fesm2015/json-form-generator.js",
   "typings": "json-form-generator.d.ts",
   "metadata": "json-form-generator.metadata.json",
-  "sideEffects": false
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
 }
