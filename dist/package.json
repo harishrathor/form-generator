@@ -1,6 +1,6 @@
 {
   "name": "json-form-generator",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "Library for generating html form using json.",
   "main": "bundles/json-form-generator.umd.js",
   "dependencies": {
@@ -29,11 +29,18 @@
   },
   "keywords": [
     "angular",
-    "json",
-    "dynamic-form",
-    "form",
-    "angular-form",
-    "json-form"
+    "angular 2",
+    "angular 4",
+    "angular 5",
+    "angular 6",
+    "angular 7",
+    "json form",
+    "dynamic form",
+    "angular form",
+    "angular dynamic form",
+    "angular json form",
+    "ng form",
+    "json based angular form"
   ],
   "author": "harishrathor",
   "license": "MIT",

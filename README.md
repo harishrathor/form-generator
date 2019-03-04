@@ -9,7 +9,7 @@ Angular 7 library for generating forms dynamically using JSON.
 #### Install following npm dependencies by reading documentation.
 - Install [bootstrap](https://www.npmjs.com/package/bootstrap).
 - Install [ngx-bootstrap](https://www.npmjs.com/package/ngx-bootstrap)(For standard webpack, angular-cli and tsc builds).
-- Install [ngx-quill](https://www.npmjs.com/package/ngx-quill) (For standard webpack, angular-cli and tsc builds). Do not forget to install `quill`.
+- Install [ngx-quill](https://www.npmjs.com/package/ngx-quill) (For standard webpack, angular-cli and tsc builds). Do not forget to install [quill](https://www.npmjs.com/package/quill).
 
 
 #### Install following npm dependencies.
@@ -372,7 +372,7 @@ export class AppComponent implements OnInit {
 // Witnout grouping options
 {
     //...
-    "optoins" : [
+    "options" : [
         {
           "label": "Option1 Label",
           "value": "value1"
@@ -397,7 +397,7 @@ export class AppComponent implements OnInit {
     "options": [
         {
             "label": "Group 1",
-            "optoins" : [
+            "options" : [
                 {
                 "label": "Option1 Label",
                 "value": "value1"
@@ -416,7 +416,7 @@ export class AppComponent implements OnInit {
         },
         {
             "label": "Group 2",
-            "optoins" : [
+            "options" : [
                 {
                 "label": "Option4 Label",
                 "value": "value4"
@@ -483,14 +483,14 @@ export class AppComponent implements OnInit {
         },
         "afterFetchFn": { /* callback which will be called after fetching options. 
         Arguments: (...your arguments, {
-                        term: string,
+                        searchTerm: string,
                         fieldCode: string,
                         formCode: string,
                         response: any (response from server or returned data from 'fetchFn') 
                     }) 
         Desired Return type: 
         {
-            optoins:[...array of options (explained in previous point.)]
+            options:[...array of options (explained in previous point.)]
         } 
         */
           "name": "postFetchACS", // any name defined in "handlerFnOwner"
@@ -610,6 +610,7 @@ class FieldComponent {
     public readonly inputContainerRef: HTMLElement;
     public readonly labelRef: HTMLElement;
     public hideLabel: boolean; // Getter Setter
+    public options: boolean; // Getter Setter for setting options of ACS, SEL and MSL
 }
 
 ```
