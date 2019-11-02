@@ -350,7 +350,7 @@ export class AppComponent implements OnInit {
       }],
       "isParent": true, // boolean, if there are some fields whose value/options depend on this field value then this field will be parent field. In this case this property will be true otherwise false.
       "children": ['child_field1_name', 'child_field2_name'], // Children fields names.
-    "order": 1// Recommened incremental number.
+    "order": 1// Recommended incremental number.
 }
 ```
 
