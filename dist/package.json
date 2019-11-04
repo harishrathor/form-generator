@@ -1,6 +1,6 @@
 {
   "name": "json-form-generator",
-  "version": "1.0.7",
+  "version": "1.0.10",
   "description": "Library for generating html form using json.",
   "main": "bundles/json-form-generator.umd.js",
   "devDependencies": {

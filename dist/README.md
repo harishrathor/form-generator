@@ -6,18 +6,47 @@ Angular 7 library for generating forms dynamically using JSON.
 
 # Installation
 
-#### Install following npm dependencies by reading documentation.
-- Install [bootstrap](https://www.npmjs.com/package/bootstrap).
-- Install [ngx-bootstrap](https://www.npmjs.com/package/ngx-bootstrap)(For standard webpack, angular-cli and tsc builds).
-- Install [ngx-quill](https://www.npmjs.com/package/ngx-quill) (For standard webpack, angular-cli and tsc builds). Do not forget to install [quill](https://www.npmjs.com/package/quill).
-
-
 #### Install following npm dependencies.
 ```bash
-npm install lodash --save
-npm install @ng-select/ng-select --save
-npm install ngx-custom-validators --save
-npm install rxjs --save
+npm install bootstrap ngx-bootstrap ngx-quill quill lodash @ng-select/ng-select ngx-custom-validators rxjs --save
+```
+
+### Add files to angular.json
+
+```bash
+ "styles": [
+    ...
+    "node_modules/bootstrap/dist/css/bootstrap.css",
+    "node_modules/quill/dist/quill.core.css",
+    "node_modules/quill/dist/quill.bubble.css",
+    "node_modules/quill/dist/quill.snow.css",
+    ...
+],
+"scripts": [
+    ...
+    "node_modules/bootstrap/dist/js/bootstrap.js",
+    "node_modules/quill/dist/quill.core.js",
+    "node_modules/quill/dist/quill.js"
+    ...
+]
+```
+
+### Add QuillModule to your module:
+```bash
+import { QuillModule } from 'ngx-quill'
+
+
+@NgModule({
+  ...
+  imports: [
+    ...
+    QuillModule.forRoot(),
+    ...
+  ],
+  ...
+})
+export class AppModule { }
+
 ```
 
 ### Now install package
