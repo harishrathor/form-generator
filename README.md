@@ -570,18 +570,18 @@ This is for grouping fields inside a form. For example address, for address ther
 You can access `simple-form` component instance which gives you control on the form. As emphasized that define `forms` property in `app.component.ts` and `form` property in `my-form.component.ts` so that instances can be set in this property.
 
 
-### How to access instance `simple-form` component form.
+### How to access instance of `simple-form` component form.
 
 #### In `AppComponent.forms` , `AppComponent.forms['MyFORMCODE']` will be an instance of `simple-form` for the form with code `'MyFormCode'`.'
-#### In `MyFormComponent.form`  will be an instance of `simple-form`.
+#### In `MyFormComponent.form`  will be an instance of `simple-form` component.
 
 ### Important `public` properties of `SimpleFormComponent` and `FieldComponent`
 
 ```typescript
 
 class SimpleFormComponent {
-    public formGoup: FormGroup; // This is the most important property for manipulate fields.
-    public fieldsComponent: any; /* This contains intances of all fields component.
+    public formGoup: FormGroup; // This is the most important property for manipulating fields.
+    public fieldsComponent: any; /* This contains instances of all fields component.
     {
         'field-name': FieldComponent
     }
