@@ -2,51 +2,22 @@
 
 Angular 7 library for generating forms dynamically using JSON. 
 
-## [See Demo](https://stackblitz.com/edit/angular-nbrlgf)
-
+## [See Demo](https://angular-swowmg.stackblitz.io)
+<!--- (https://stackblitz.com/edit/angular-nbrlgf)--->
 # Installation
+
+#### Install following npm dependencies by reading documentation.
+- Install [bootstrap](https://www.npmjs.com/package/bootstrap).
+- Install [ngx-bootstrap](https://www.npmjs.com/package/ngx-bootstrap)(For standard webpack, angular-cli and tsc builds).
+- Install [ngx-quill](https://www.npmjs.com/package/ngx-quill) (For standard webpack, angular-cli and tsc builds). Do not forget to install [quill](https://www.npmjs.com/package/quill).
+
 
 #### Install following npm dependencies.
 ```bash
-npm install bootstrap ngx-bootstrap ngx-quill quill lodash @ng-select/ng-select ngx-custom-validators rxjs --save
-```
-
-### Add files to angular.json
-
-```bash
- "styles": [
-    ...
-    "node_modules/bootstrap/dist/css/bootstrap.css",
-    "node_modules/quill/dist/quill.core.css",
-    "node_modules/quill/dist/quill.bubble.css",
-    "node_modules/quill/dist/quill.snow.css",
-    ...
-],
-"scripts": [
-    ...
-    "node_modules/bootstrap/dist/js/bootstrap.js",
-    "node_modules/quill/dist/quill.core.js",
-    "node_modules/quill/dist/quill.js"
-    ...
-]
-```
-
-### Add QuillModule to your module:
-```bash
-import { QuillModule } from 'ngx-quill'
-
-
-@NgModule({
-  ...
-  imports: [
-    ...
-    QuillModule.forRoot(),
-    ...
-  ],
-  ...
-})
-export class AppModule { }
-
+npm install lodash --save
+npm install @ng-select/ng-select --save
+npm install ngx-custom-validators --save
+npm install rxjs --save
 ```
 
 ### Now install package
@@ -379,7 +350,7 @@ export class AppComponent implements OnInit {
       }],
       "isParent": true, // boolean, if there are some fields whose value/options depend on this field value then this field will be parent field. In this case this property will be true otherwise false.
       "children": ['child_field1_name', 'child_field2_name'], // Children fields names.
-    "order": 1// Recommened incremental number.
+    "order": 1// Recommended incremental number.
 }
 ```
 
@@ -599,18 +570,18 @@ This is for grouping fields inside a form. For example address, for address ther
 You can access `simple-form` component instance which gives you control on the form. As emphasized that define `forms` property in `app.component.ts` and `form` property in `my-form.component.ts` so that instances can be set in this property.
 
 
-### How to access instance `simple-form` component form.
+### How to access instance of `simple-form` component form.
 
 #### In `AppComponent.forms` , `AppComponent.forms['MyFORMCODE']` will be an instance of `simple-form` for the form with code `'MyFormCode'`.'
-#### In `MyFormComponent.form`  will be an instance of `simple-form`.
+#### In `MyFormComponent.form`  will be an instance of `simple-form` component.
 
 ### Important `public` properties of `SimpleFormComponent` and `FieldComponent`
 
 ```typescript
 
 class SimpleFormComponent {
-    public formGoup: FormGroup; // This is the most important property for manipulate fields.
-    public fieldsComponent: any; /* This contains intances of all fields component.
+    public formGoup: FormGroup; // This is the most important property for manipulating fields.
+    public fieldsComponent: any; /* This contains instances of all fields component.
     {
         'field-name': FieldComponent
     }
