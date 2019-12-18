@@ -2,8 +2,8 @@
 
 Angular 7 library for generating forms dynamically using JSON. 
 
-## [See Demo](https://stackblitz.com/edit/angular-nbrlgf)
-
+## [See Demo](https://angular-swowmg.stackblitz.io)
+<!--- (https://stackblitz.com/edit/angular-nbrlgf)--->
 # Installation
 
 #### Install following npm dependencies by reading documentation.
